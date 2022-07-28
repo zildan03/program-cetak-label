@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="752" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="31e8618f-80c9-4210-97b9-58387796a7c9">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="angka" class="java.lang.String"/>
+	<parameter name="Type" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     halaman.`no` AS halaman_no,
+     halaman.`pages` AS halaman_pages,
+     informationdata.`packingNo` AS informationdata_packingNo,
+     informationdata.`netWeight` AS informationdata_netWeight,
+     informationdata.`type` AS informationdata_type,
+     informationdata.`theme` AS informationdata_theme,
+     informationdata.`noKemasan` AS informationdata_noKemasan
+FROM
+     `halaman` halaman,
+     `informationdata` informationdata
+WHERE halaman.`pages`= $P{angka} and informationdata.`netWeight`=$P{Type}]]>
+	</queryString>
+	<field name="halaman_no" class="java.lang.Integer"/>
+	<field name="halaman_pages" class="java.lang.Integer"/>
+	<field name="informationdata_packingNo" class="java.lang.Integer"/>
+	<field name="informationdata_netWeight" class="java.lang.String"/>
+	<field name="informationdata_type" class="java.lang.String"/>
+	<field name="informationdata_theme" class="java.lang.String"/>
+	<field name="informationdata_noKemasan" class="java.lang.String"/>
+	<variable name="dari" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<textField>
+				<reportElement x="-1" y="-1" width="504" height="44" uuid="01ad8695-792e-41b9-880f-0bd9572ff9cf"/>
+				<textElement>
+					<font size="34" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{informationdata_netWeight}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="46" splitType="Stretch">
+			<textField>
+				<reportElement x="-1" y="7" width="181" height="35" uuid="47f55cbb-5cf5-4f4e-956b-58e2e3c1ff2d"/>
+				<textElement>
+					<font size="24" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{informationdata_type}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="43" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="217" splitType="Stretch">
+			<textField>
+				<reportElement x="318" y="194" width="109" height="20" uuid="63de240f-49b7-4753-a4c1-8e67568e7db8"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{informationdata_theme}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="458" y="194" width="25" height="20" uuid="91e63851-1595-4a41-9294-d8175a244b29"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{angka}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="507" y="194" width="22" height="20" uuid="a3b35ae2-64e4-4a4e-8e4f-986ac67c311a"/>
+				<textElement>
+					<font size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{informationdata_noKemasan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>
